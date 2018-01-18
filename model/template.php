@@ -24,5 +24,38 @@ class template
         //fclose($fp);
         $this->content = file_get_contents($f);
     }
+    // html vaade faili kontrollimine
+    // ja kasutusele võtmine
+    function loadFile(){
+        // kontrollime html vaadete kausta olemasolu
+        if (!is_dir(VIEWS_DIR)){
+            echo 'Kataloogi '.VIEWS_DIR.' ei ole leitud<br />';
+            exit;
+        }
+        // Kui html vaade faili nimi antakse kujul;
+        // views/test.html
+        $f = $this->file; // abiasendus
+        if (file_exists($f) and is_file($f) and is_readable($f)){
+            // loeme sisu failist
+            $this->readFile($f);
+        }
+        // kui html vaade faili nimi antakse kujul:
+        // test.html
+        $f = VIEWS_DIR.$this->file;
+        if (file_exists($f) and is_file($f) and is_readable($f)){
+            // loeme sisu failist
+            $this->readFile($f);
+        }
+        // Kui nimi vaade faili nimi antakse kujul:
+        // katse.test -> views/katse/test.html
+        $f = VIEWS_DIR.str_replace('-', '/', $this->file).'.html';
+            if (file_exists($f) and is_file($f) and is_readable($f)){
+                // loeme sisu failist
+                $this->readFile();
+            }
+            if ($this->content === false){
+                echo 'Ei suutnud lugeda faili '.$this->file.'<br />';
+            }
+    }
 
 }
