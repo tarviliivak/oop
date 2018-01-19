@@ -59,16 +59,28 @@ class template
             // loeme sisu failist
             $this->readFile($file);
         }
+        // kui html vaade faili nimi antakse kujul:
+        // test.html
+        $file = VIEWS_DIR.$this->file.'.html';
+        if (file_exists($file) and is_file($file) and is_readable($file)){
+            // loeme sisu failist
+            $this->readFile($file);
+        }
         // Kui nimi vaade faili nimi antakse kujul:
         // katse.test -> views/katse/test.html
         $file = VIEWS_DIR.str_replace('-', '/', $this->file).'.html';
             if (file_exists($file) and is_file($file) and is_readable($file)){
                 // loeme sisu failist
-                $this->readFile();
+                $this->readFile($file);
             }
             if ($this->content === false){
                 echo 'Ei suutnud lugeda faili '.$this->file.'<br />';
             }
+    }
+
+
+    function set($name, $value){
+        $this->vars[$name] = $value;
     }
 
 }
