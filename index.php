@@ -20,3 +20,5 @@ $mainTmpl->set('content', 'Lehe sisu');
 echo '<pre>';
 print_r($mainTmpl);
 echo '</pre>';
+// väljastame sisuga täiedtud malli
+echo $mainTmpl->parse();
