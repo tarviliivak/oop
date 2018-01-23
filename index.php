@@ -14,7 +14,7 @@ $mainTmpl->set('site_title', 'PV');
 $mainTmpl->set('user', 'Kasutaja');
 $mainTmpl->set('title', 'Pealkiri');
 $mainTmpl->set('lang_bar', 'Keeleriba');
-$mainTmpl->set('menu', 'lehe menüü');
+require_once 'menu.php';
 $mainTmpl->set('content', 'Lehe sisu');
 //väljastame objekti sisu test kujul
 echo '<pre>';
