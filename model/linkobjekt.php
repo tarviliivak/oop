@@ -42,8 +42,12 @@ class linkobject extends http
             $this->addToLink($link, $name, $value);
         }
         if($link != ''){
-            $this->baseLink = $this->baseLink.'?'.$link;
+            //http://tl.ikt.khk.ee/oop/index.php?control=login&user=test
+            $link = $this->baseLink.'?'.$link;
+        }else{
+            //http://tl.ikt.khk.ee/oop/index.php
+            $link = $this->baseLink;
         }
-        return $this->baseLink;
+        return $link;
     }
 }
