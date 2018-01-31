@@ -5,7 +5,7 @@
  * Date: 18.01.2018
  * Time: 9:36
  */
-// konfiguratsiooni fail
+// konfiguratsiooni file
 
 define('MODEL_DIR', 'model/');
 define('VIEWS_DIR', 'views/');
