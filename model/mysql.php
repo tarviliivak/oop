@@ -8,12 +8,12 @@
 
 class mysql
 {
- // klassi väljad
+    // klassi väljad
     var $conn = false; // ühendus db serveriga
     var $host = false; // db server
     var $user = false; // db serveri kasutaja
     var $pass = false; // db server kasutaja parool
-    var $dbname = false;
+    var $dbname = false;  // db nimi, mis on kasutusel
 
     /**
      * mysql constructor.
@@ -23,26 +23,43 @@ class mysql
      * @param bool $dbname
      */
     public function __construct($host, $user, $pass, $dbname)
-
-        $this->host = $host;
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->dbname = $dbname;
-        $this->connect();
     {
         $this->host = $host;
         $this->user = $user;
         $this->pass = $pass;
         $this->dbname = $dbname;
-    } // db nimi, mis on kasutusel
+        $this->connect();
+    }
 
-    function $connect($host, $user, $pass, $dbname) {
-        $this->conn = mysqli_connect($host, $user, $pass, $dbname);
-        if(!$this->conn){
+
+    function connect()
+    {
+        $this->conn = mysqli_connect($this->host, $this->user, $this->pass, $this->dbname);
+        if (!$this->conn) {
             echo 'Probleem andmebaasi ühendusega <br/>';
             exit;
+        }
+    }
+    // päringu saatmise funktsioon
+    function query($sql){
+        $result = mysqli_query($this->conn, $sql);
+        if(!$result){
+            echo 'Probleem päringuga '.$sql.' <br />';
+            return false;
+        }
+        return $result;
+    }
+    // andmete lugemine päringust
+    function getData($sql){
+        $result = $this->query($sql); // saadame päringu andmebaasi
+        $data = array(); //päringu andmete salvestamiseks
+        while($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
 
-}
-}
-
+        }
+        if(count($data) == 0){
+            return false;
+        }
+        return $data; // või tagastame korralikud andmed
+    }
 }
