@@ -27,3 +27,8 @@ echo $mainTmpl->parse();
 echo '<pre>';
 print_r($http->vars);
 echo '</pre>';
+// Kontrollime $db objekti tööd
+$hetkeKell = $db->getData('SELECT NOW()');
+echo '<pre>';
+print_r($hetkeKell);
+echo '</pre>';
