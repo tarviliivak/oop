@@ -10,6 +10,18 @@
 $menuTmpl = new template('menu.menu'); //menüü mall
 $itemTmpl = new template('menu.item'); //item mall
 
+// Koostame menüü ja sisu loomise päringu
+
+$sql = 'SELECT content_id, content, title '.
+    'FROM content WHERE parent_id='.fixDB(0).
+    ' AND  show_in_menu='.fixDB(1);
+$result = $db->getData($sql); //
+echo '<pre>';
+print_r($result);
+echo '</pre>';
+
+
+
 $itemTmpl->set('name', 'avaleht');
 // lisame antud elemendi menüüsse
 // http://tl.ikt.khk.ee/oop/index.php/control/avaleht
