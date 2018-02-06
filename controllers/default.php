@@ -20,6 +20,7 @@ if($result == false){
 }
 if($result != false){
     $page = $result[0];
+    $http->set('page_id', $page['content_id']);
     $mainTmpl->set('content', $page['content']);
 }
 
