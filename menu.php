@@ -27,5 +27,15 @@ if($result != false){
         $menuTmpl->add('menu_items', $itemTmpl->parse());
     }
 }
+// Need elemendid ei ole juba andmebaasist
+//sisse logimine
+// loome mitte sisse logitud kasutaja jaoks user_id
+define('USER_ID', 0);
+// näitame antud kasutajale logi sisse menüüd
+$itemTmpl->set('name', 'logi sisse');
+$link = $http->getLink(array('control'=>'login'));
+$itemTmpl->set('link', $link);
+$menuTmpl->add('menu_items', $itemTmpl->parse());
+
 //Trükime valmis menüü
 $mainTmpl->set('menu', $menuTmpl->parse());
